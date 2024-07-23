@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.AdminRepo;
+import com.dao.CustomerRepo;
 import com.dao.EmployeeRepo;
 import com.dao.MaterialRepo;
 import com.dao.RevenueRepo;
@@ -14,15 +15,18 @@ import com.model.Revenue;
 public class AdminServiceImplementation implements AdminService {
 	@Autowired
 	AdminRepo ar;
-	
+
 	@Autowired
 	RevenueRepo rr;
-	
+
 	@Autowired
 	EmployeeRepo er;
-	
+
 	@Autowired
 	MaterialRepo mr;
+
+	@Autowired
+	CustomerRepo cr;
 
 	@Override
 	public Admin getAdminDetails() {
@@ -50,14 +54,17 @@ public class AdminServiceImplementation implements AdminService {
 		r.setMaterialPaymentPending(mr.materialPaymentPending());
 		r.setCustomerPaymentRecieve(0);
 		r.setCustomerPaymentPending(0);
+		if (cr.sumOfProductsForPaidCustomers() != null) {
+			r.setCustomerPaymentRecieve(cr.sumOfProductsForPaidCustomers());
+		}
+		if (cr.sumOfProductsForPendingCustomers() != null) {
+			r.setCustomerPaymentPending(cr.sumOfProductsForPendingCustomers());
+		}
 		rr.save(r);
 		r.setGainOrLoss(0);
 		rr.save(r);
 		return r;
-		
-		
+
 	}
-	
-	
 
 }
