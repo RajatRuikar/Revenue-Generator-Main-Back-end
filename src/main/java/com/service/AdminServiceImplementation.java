@@ -61,7 +61,7 @@ public class AdminServiceImplementation implements AdminService {
 			r.setCustomerPaymentPending(cr.sumOfProductsForPendingCustomers());
 		}
 		rr.save(r);
-		r.setGainOrLoss(0);
+		r.setGainOrLoss(r.getInvestment()-r.getSumOfEmployeeSalary()-r.getInvestmentOnMaterial()+r.getCustomerPaymentPending()+r.getCustomerPaymentRecieve());
 		rr.save(r);
 		return r;
 
