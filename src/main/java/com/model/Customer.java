@@ -31,6 +31,7 @@ public class Customer {
 
 	public Customer(int customerId, String customerName, String customerPhoneNumber, String customerEmail,
 			String customerAddress, String paymentIs, List<Product> product) {
+		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.customerPhoneNumber = customerPhoneNumber;
