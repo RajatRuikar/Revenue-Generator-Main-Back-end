@@ -22,7 +22,7 @@ public class Customer {
 	private String customerAddress;
 	private String paymentIs;
 
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private List<Product> product;
 
 	public Customer() {
@@ -31,7 +31,6 @@ public class Customer {
 
 	public Customer(int customerId, String customerName, String customerPhoneNumber, String customerEmail,
 			String customerAddress, String paymentIs, List<Product> product) {
-		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.customerPhoneNumber = customerPhoneNumber;
