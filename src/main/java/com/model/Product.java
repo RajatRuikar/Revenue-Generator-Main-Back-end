@@ -1,9 +1,12 @@
 package com.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Product {
@@ -16,7 +19,10 @@ public class Product {
 	private float productPrice;
 	private String productExpireDate;
 	private int productQuantityInStock;
-
+	
+	@ManyToMany(mappedBy = "product")
+    private List<Customer> customer;
+	
 	public Product() {
 		super();
 	}
