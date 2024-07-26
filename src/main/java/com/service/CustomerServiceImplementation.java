@@ -16,7 +16,7 @@ public class CustomerServiceImplementation implements CustomerService {
 	@Autowired
 	CustomerRepo cr;
 	
-	@Autowired
+	@Autowired 
 	AdminRepo ar;
 
 	@Override
