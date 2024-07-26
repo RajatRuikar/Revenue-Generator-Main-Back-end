@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dao.AdminRepo;
 import com.dao.CustomerRepo;
+import com.model.Admin;
 import com.model.Customer;
 
 @Service
@@ -13,10 +15,17 @@ public class CustomerServiceImplementation implements CustomerService {
 
 	@Autowired
 	CustomerRepo cr;
+	
+	@Autowired
+	AdminRepo ar;
 
 	@Override
 	public void saveCustomer(Customer c) {
 		cr.save(c);
+		Admin a = ar.findById(1).orElse(null);
+		List<Customer> customers = a.getCustomer();
+		customers.add(c);
+		ar.save(a);
 	}
 
 	@Override

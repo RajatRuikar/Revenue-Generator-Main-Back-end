@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dao.AdminRepo;
 import com.dao.EmployeeRepo;
+import com.model.Admin;
 import com.model.Employee;
 
 @Service
@@ -13,10 +15,17 @@ public class EmployeeServiceImplementation implements EmployeeService {
 	
 	@Autowired
 	EmployeeRepo er;
+	
+	@Autowired
+	AdminRepo ar;
 
 	@Override
 	public void saveEmployee(Employee e) {
 		er.save(e);
+		Admin a = ar.findById(1).orElse(null);
+		List<Employee> employees = a.getEmployeee();
+		employees.add(e);
+		ar.save(a);
 	}
 
 	@Override
