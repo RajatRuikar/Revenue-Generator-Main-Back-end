@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.model.Employee;
+import com.model.Product;
 import com.service.EmployeeService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -46,6 +47,11 @@ public class EmployeeController {
 	@PutMapping("updateemployee/{id}")
 	public Employee updateEmployee(@PathVariable int id, @RequestBody Employee e) {
 		return es.updateEmployee(e, id);
+	}
+	
+	@GetMapping("{id}/allproduct")
+	public List<Product> getMethodName(@PathVariable int id) {
+		return es.getAllProduct();
 	}
 	
 }

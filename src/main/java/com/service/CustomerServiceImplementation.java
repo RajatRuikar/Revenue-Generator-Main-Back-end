@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.dao.AdminRepo;
 import com.dao.CustomerRepo;
+import com.dao.ProductRepo;
 import com.model.Admin;
 import com.model.Customer;
+import com.model.Product;
 
 @Service
 public class CustomerServiceImplementation implements CustomerService {
@@ -18,6 +20,9 @@ public class CustomerServiceImplementation implements CustomerService {
 	
 	@Autowired 
 	AdminRepo ar;
+	
+	@Autowired
+	ProductRepo pr;
 
 	@Override
 	public void saveCustomer(Customer c) {
@@ -59,6 +64,11 @@ public class CustomerServiceImplementation implements CustomerService {
 		Customer c = cr.findById(id).orElse(null);
 		cr.delete(c);
 		return c;
+	}
+
+	@Override
+	public List<Product> getAllProduct() {
+		return pr.findAll();
 	}
 	
 	

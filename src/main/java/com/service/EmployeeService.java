@@ -3,6 +3,7 @@ package com.service;
 import java.util.List;
 
 import com.model.Employee;
+import com.model.Product;
 
 public interface EmployeeService {
 
@@ -15,4 +16,6 @@ public interface EmployeeService {
 	public Employee updateEmployee(Employee e, int id);
 	
 	public Employee deleteEmployee(int id);
+	
+	public List<Product> getAllProduct();
 }
