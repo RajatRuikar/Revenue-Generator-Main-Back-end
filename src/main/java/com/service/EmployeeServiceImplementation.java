@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.dao.AdminRepo;
 import com.dao.EmployeeRepo;
+import com.dao.ProductRepo;
 import com.model.Admin;
 import com.model.Employee;
+import com.model.Product;
 
 @Service
 public class EmployeeServiceImplementation implements EmployeeService {
@@ -18,6 +20,9 @@ public class EmployeeServiceImplementation implements EmployeeService {
 	
 	@Autowired
 	AdminRepo ar;
+	
+	@Autowired
+	ProductRepo pr;
 
 	@Override
 	public void saveEmployee(Employee e) {
@@ -60,6 +65,11 @@ public class EmployeeServiceImplementation implements EmployeeService {
 	@Override
 	public Employee getEmployee(int id) {
 		return er.findById(id).orElse(null);
+	}
+
+	@Override
+	public List<Product> getAllProduct() {
+		return pr.findAll();
 	}
 	
 	
