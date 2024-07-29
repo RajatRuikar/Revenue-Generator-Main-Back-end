@@ -48,20 +48,34 @@ public class AdminServiceImplementation implements AdminService {
 	public Revenue getRevenue() {
 		Revenue r = rr.findById(1).orElse(null);
 		r.setInvestment(ar.findById(1).orElse(null).getAdminInverstment());
-		r.setSumOfEmployeeSalary(er.sumEmployeeSalaries());
-		r.setInvestmentOnMaterial(mr.sumMaterialValues());
-		r.setMaterialPaymentPaid(mr.materialPaymentPaid());
-		r.setMaterialPaymentPending(mr.materialPaymentPending());
 		r.setCustomerPaymentRecieve(0);
 		r.setCustomerPaymentPending(0);
-		if (cr.sumOfProductsForPaidCustomers() != null) {
-			r.setCustomerPaymentRecieve(cr.sumOfProductsForPaidCustomers());
+		r.setSumOfEmployeeSalary(0);
+		r.setInvestmentOnMaterial(0);
+		r.setMaterialPaymentPaid(0);
+		r.setMaterialPaymentPending(0);
+
+		if (er.sumEmployeeSalaries() != null) {
+			r.setSumOfEmployeeSalary(er.sumEmployeeSalaries());
 		}
-		if (cr.sumOfProductsForPendingCustomers() != null) {
-			r.setCustomerPaymentPending(cr.sumOfProductsForPendingCustomers());
+		if (mr.sumMaterialValues() != null) {
+			r.setInvestmentOnMaterial(mr.sumMaterialValues());
 		}
+		if (mr.materialPaymentPaid() != null) {
+			r.setMaterialPaymentPaid(mr.materialPaymentPaid());
+		}
+		if (mr.materialPaymentPending() != null) {
+			r.setMaterialPaymentPending(mr.materialPaymentPending());
+		}
+//		if (cr.sumOfProductsForPaidCustomers() != null) {
+//			r.setCustomerPaymentRecieve(cr.sumOfProductsForPaidCustomers());
+//		}
+//		if (cr.sumOfProductsForPendingCustomers() != null) {
+//			r.setCustomerPaymentPending(cr.sumOfProductsForPendingCustomers());
+//		}
 		rr.save(r);
-		r.setGainOrLoss(r.getInvestment()-r.getSumOfEmployeeSalary()-r.getInvestmentOnMaterial()+r.getCustomerPaymentPending()+r.getCustomerPaymentRecieve());
+		r.setGainOrLoss(r.getInvestment() - r.getSumOfEmployeeSalary() - r.getInvestmentOnMaterial()
+				+ r.getCustomerPaymentPending() + r.getCustomerPaymentRecieve());
 		rr.save(r);
 		return r;
 

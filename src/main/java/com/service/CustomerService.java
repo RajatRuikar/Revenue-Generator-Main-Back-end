@@ -14,4 +14,6 @@ public interface CustomerService {
 	public Customer updateCustomer(Customer c,int id);
 	
 	public Customer deleteCustomer(int id);
+	
+	
 }

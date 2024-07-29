@@ -1,38 +1,48 @@
 package com.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
-public class Product {
-
+public class ProductInCart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int productInCartId;
 	private int productId;
 	private String productName;
 	private String productDescription;
 	private float productPrice;
 	private String productExpireDate;
-	private int productQuantityInStock;
+
+	@ManyToMany(mappedBy = "ProductInCart")
+	private List<Customer> customer;
 	
-//	@ManyToMany(mappedBy = "product")
-//    private List<Customer> customer;
-	
-	public Product() {
+	public ProductInCart() {
 		super();
 	}
 
-	public Product(int productId, String productName, String productDescription, float productPrice,
-			String productExpireDate, int productQuantityInStock) {
+	public ProductInCart(int productInCartId, int productId, String productName, String productDescription,
+			float productPrice, String productExpireDate) {
 		super();
+		this.productInCartId = productInCartId;
 		this.productId = productId;
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.productPrice = productPrice;
 		this.productExpireDate = productExpireDate;
-		this.productQuantityInStock = productQuantityInStock;
+	}
+
+	public int getProductInCartId() {
+		return productInCartId;
+	}
+
+	public void setProductInCartId(int productInCartId) {
+		this.productInCartId = productInCartId;
 	}
 
 	public int getProductId() {
@@ -73,14 +83,6 @@ public class Product {
 
 	public void setProductExpireDate(String productExpireDate) {
 		this.productExpireDate = productExpireDate;
-	}
-
-	public int getProductQuantityInStock() {
-		return productQuantityInStock;
-	}
-
-	public void setProductQuantityInStock(int productQuantityInStock) {
-		this.productQuantityInStock = productQuantityInStock;
 	}
 
 }

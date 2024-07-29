@@ -7,9 +7,9 @@ import com.model.Customer;
 
 public interface CustomerRepo extends JpaRepository<Customer, Integer>{
 
-    @Query("SELECT SUM(p.productPrice) FROM Customer c JOIN c.product p WHERE c.paymentIs = 'Pending'")
-    public Float sumOfProductsForPendingCustomers();
-
-    @Query("SELECT SUM(p.productPrice) FROM Customer c JOIN c.product p WHERE c.paymentIs = 'Receive'")
-    public Float sumOfProductsForPaidCustomers();
+//    @Query("SELECT SUM(p.productPrice) FROM Customer c JOIN c.product p WHERE c.paymentIs = 'Pending'")
+//    public Float sumOfProductsForPendingCustomers();
+//
+//    @Query("SELECT SUM(p.productPrice) FROM Customer c JOIN c.product p WHERE c.paymentIs = 'Receive'")
+//    public Float sumOfProductsForPaidCustomers();
 }

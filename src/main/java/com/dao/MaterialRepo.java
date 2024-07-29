@@ -8,11 +8,11 @@ import com.model.Material;
 public interface MaterialRepo extends JpaRepository<Material, Integer> {
 	
 	 @Query("SELECT SUM(m.materialPrice * m.materialQuantityInStock) FROM Material m")
-	 public float sumMaterialValues();
+	 public Float sumMaterialValues();
 	 
 	 @Query("SELECT SUM(m.materialPrice * m.materialQuantityInStock) FROM Material m where m.paymentIs='Pending'")
-	 public float materialPaymentPaid();
+	 public Float materialPaymentPaid();
 
 	 @Query("SELECT SUM(m.materialPrice * m.materialQuantityInStock) FROM Material m  where m.paymentIs='Paid'")
-	 public float materialPaymentPending();
+	 public Float materialPaymentPending();
 }

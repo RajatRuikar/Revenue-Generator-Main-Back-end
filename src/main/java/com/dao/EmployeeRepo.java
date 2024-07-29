@@ -8,5 +8,5 @@ import com.model.Employee;
 public interface EmployeeRepo extends JpaRepository<Employee, Integer>{
 
 	@Query("SELECT SUM(e.employeeSalary) FROM Employee e")
-    public float sumEmployeeSalaries();
+    public Float sumEmployeeSalaries();
 }

@@ -24,15 +24,15 @@ public class Customer {
 	private String paymentIs;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "customer_product", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-	private List<Product> product;
+	@JoinTable(name = "customer_product_in_cart", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+	private List<ProductInCart> ProductInCart;
 
 	public Customer() {
 		super();
 	}
 
 	public Customer(int customerId, String customerName, String customerPhoneNumber, String customerEmail,
-			String customerAddress, String paymentIs, List<Product> product) {
+			String customerAddress, String paymentIs, List<com.model.ProductInCart> productInCart) {
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -40,7 +40,7 @@ public class Customer {
 		this.customerEmail = customerEmail;
 		this.customerAddress = customerAddress;
 		this.paymentIs = paymentIs;
-		this.product = product;
+		ProductInCart = productInCart;
 	}
 
 	public int getCustomerId() {
@@ -83,12 +83,12 @@ public class Customer {
 		this.customerAddress = customerAddress;
 	}
 
-	public List<Product> getProduct() {
-		return product;
+	public List<ProductInCart> getProductInCart() {
+		return ProductInCart;
 	}
 
-	public void setProduct(List<Product> product) {
-		this.product = product;
+	public void setProductInCart(List<ProductInCart> productInCart) {
+		ProductInCart = productInCart;
 	}
 
 	public String getPaymentIs() {
