@@ -14,13 +14,13 @@ import com.model.Product;
 
 @Service
 public class EmployeeServiceImplementation implements EmployeeService {
-	
+
 	@Autowired
 	EmployeeRepo er;
-	
+
 	@Autowired
 	AdminRepo ar;
-	
+
 	@Autowired
 	ProductRepo pr;
 
@@ -41,7 +41,7 @@ public class EmployeeServiceImplementation implements EmployeeService {
 	@Override
 	public Employee updateEmployee(Employee e, int id) {
 		Employee e1 = er.findById(id).orElse(null);
-		if(e1 == null) {
+		if (e1 == null) {
 			return null;
 		}
 		e1.setEmployeeName(e.getEmployeeName());
@@ -71,6 +71,37 @@ public class EmployeeServiceImplementation implements EmployeeService {
 	public List<Product> getAllProduct() {
 		return pr.findAll();
 	}
-	
-	
+
+	@Override
+	public Product deleteProduct(int id) {
+		Product p = pr.findById(id).orElse(null);
+		pr.delete(p);
+		return p;
+	}
+
+	@Override
+	public Product addPrduct(Product p) {
+		return pr.save(p);
+	}
+
+	@Override
+	public Product updateProduct(int id, Product p) {
+		Product p1 = pr.findById(id).orElse(null);
+		if(p1==null)
+			return null;
+		
+		p1.setProductName(p.getProductName());
+		p1.setProductDescription(p.getProductDescription());
+		p1.setProductPrice(p.getProductPrice());
+		p1.setProductExpireDate(p.getProductExpireDate());
+		p1.setProductQuantityInStock(p.getProductQuantityInStock());
+		pr.save(p1);
+		return p1;
+	}
+
+	@Override
+	public Product getProductById(int id) {
+		return pr.findById(id).orElse(null);
+	}
+
 }

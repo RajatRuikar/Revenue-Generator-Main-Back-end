@@ -18,4 +18,12 @@ public interface EmployeeService {
 	public Employee deleteEmployee(int id);
 	
 	public List<Product> getAllProduct();
+	
+	public Product deleteProduct(int id);
+	
+	public Product addPrduct(Product p);
+	
+	public Product updateProduct(int id,Product p);
+	
+	public Product getProductById(int id);
 }
