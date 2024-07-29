@@ -19,7 +19,7 @@ public class Admin {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Customer> customer;
-
+	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private List<Employee> employee;
 

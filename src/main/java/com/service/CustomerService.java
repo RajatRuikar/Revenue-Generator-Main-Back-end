@@ -3,6 +3,7 @@ package com.service;
 import java.util.List;
 
 import com.model.Customer;
+import com.model.Product;
 
 public interface CustomerService {
 	public void saveCustomer(Customer c);
@@ -15,5 +16,5 @@ public interface CustomerService {
 	
 	public Customer deleteCustomer(int id);
 	
-	
+	public List<Product> getAllProduct();
 }
